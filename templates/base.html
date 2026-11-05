@@ -426,25 +426,28 @@
     {% block bodyend %}{% endblock %}
 
     <footer>
-        <span id="footer-content">
-            <br>
-            {{_('proudly powered by %(dmoj)s', dmoj=safe('<a style="color: #808080" href="https://dmoj.ca"><b>DMOJ</b></a>'))}} |
-            {{_('follow us on %(github)s and %(facebook)s', github=safe('<a style="color: #808080" href="https://github.com/VNOI-Admin/OJ"><b>Github</b></a>'), facebook=safe('<a style="color: #808080" href="https://www.facebook.com/vnoi.wiki"><b>Facebook</b></a>'))}}
-            {% if misc_config.footer %}
-                {{ misc_config.footer|safe }} |
-            {% endif %}
-            <form id="set_language" action="{{ url('set_language') }}" method="post" style="display: inline">
-                {% csrf_token %}
+    <span id="footer-content">
+        <br>
+        Vận hành bởi <b>HUMG IT Club</b> | Nền tảng <a style="color: #808080" href="https://dmoj.ca" target="_blank"><b>DMOJ</b></a> |
+        Theo dõi CLB trên 
+        <a style="color: #808080" href="https://github.com/humg-it-club" target="_blank"><b>GitHub</b></a> và 
+        <a style="color: #808080" href="https://www.facebook.com/humgit" target="_blank"><b>Facebook</b></a>
+        {% if misc_config.footer %}
+            | {{ misc_config.footer|safe }}
+        {% endif %}
+
+        <form id="set_language" action="{{ url('set_language') }}" method="post" style="display: inline">
+            {% csrf_token %}
             <input name="next" type="hidden" value="{{ request.get_full_path() }}">
-            <input name="language" type="hidden" value="{{LANGUAGE_CODE}}">
-          </form>
-            <form id="set_theme" action="{{ url('set_theme') }}" method="post" style="display: inline">
-                {% csrf_token %}
-                <input name="next" type="hidden" value="{{ request.get_full_path() }}">
-                <input name="theme" type="hidden" value="{{ SITE_THEME_NAME }}">
-            </form>
-        </span>
-    </footer>
+            <input name="language" type="hidden" value="{{ LANGUAGE_CODE }}">
+        </form>
+        <form id="set_theme" action="{{ url('set_theme') }}" method="post" style="display: inline">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path() }}">
+            <input name="theme" type="hidden" value="{{ SITE_THEME_NAME }}">
+        </form>
+    </span>
+</footer>
 </div>
 </body>
 </html>
